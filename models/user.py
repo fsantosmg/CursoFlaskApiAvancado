@@ -3,6 +3,7 @@ from db import db
 
 UserJSON = Dict[str, Union[int, str]]
 
+
 class UserModel(db.Model):
     __tablename__ = "users"
 
@@ -18,11 +19,11 @@ class UserModel(db.Model):
         return {"id": self.id, "username": self.username}
 
     @classmethod
-    def find_by_username(cls, username: str):
+    def find_by_username(cls, username: str) -> "UserModel":
         return cls.query.filter_by(username=username).first()
 
     @classmethod
-    def find_by_id(cls, _id: int):
+    def find_by_id(cls, _id: int) -> "UserModel":
         return cls.query.filter_by(id=_id).first()
 
     def save_to_db(self) -> None:
